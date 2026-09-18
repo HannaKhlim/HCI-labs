@@ -1,5 +1,5 @@
 import HeroBanner from "./HeroBanner";
-import GendersSection from "./GendersSection";
+import GendersSection from "./GenderSection";
 import NewArrivalsCarousel from "./NewArrivalsCarousel";
 import AboutSection from "./AboutSection";
 import SubscribeModule from "./SubscribeModule";
