@@ -7,17 +7,17 @@ export default function GendersSection() {
   const items = [
     {
       label: genders.women,
-      src: "./public/photos/woman.png",
+      src: "./photos/woman.png",
       url: "/products?gender=women",
     },
     {
       label: genders.men,
-      src: "./public/photos/man.png",
+      src: "./photos/man.png",
       url: "/products?gender=men",
     },
     {
       label: genders.kids,
-      src: "./public/photos/baby.png",
+      src: "./photos/baby.png",
       url: "/products?gender=kids",
     },
   ];

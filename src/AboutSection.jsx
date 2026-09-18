@@ -9,7 +9,7 @@ export default function AboutSection() {
       <h2 className="about__header">{about.header}</h2>
       <div className="about__container">
         <img
-          src="/public/photos/about.png"
+          src="/photos/about.png"
           alt="About Us"
           className="about__img"
         />
