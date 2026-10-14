@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "Beige Wide Leg Trousers",
+    "brand": "Tommy Hilfiger",
+    "price": 8900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Beige Wide Leg Trousers.jpg",
+    "description": "Wide-leg trousers in soft beige fabric."
+  },
+  {
+    "id": 2,
+    "name": "Beige Wool Coat",
+    "brand": "Armani Exchange",
+    "price": 24500,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Beige Wool Coat.jpg",
+    "description": "Elegant wool coat in beige shade."
+  },
+  {
+    "id": 3,
+    "name": "Black Blazer",
+    "brand": "Calvin Klein",
+    "price": 15900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Black Blazer.jpg",
+    "description": "Classic fitted black blazer."
+  },
+  {
+    "id": 4,
+    "name": "Black Kids Baseball Cap",
+    "brand": "Gant",
+    "price": 1900,
+    "gender": "kids",
+    "category": "accessories",
+    "image": "/photos/Black Kids Baseball Cap.jpg",
+    "description": "Black baseball cap for kids."
+  },
+  {
+    "id": 5,
+    "name": "Black Leather Tote Bag",
+    "brand": "Calvin Klein",
+    "price": 17900,
+    "gender": "women",
+    "category": "accessories",
+    "image": "/photos/Black Leather Tote Bag.jpg",
+    "description": "Spacious leather tote bag in black."
+  },
+  {
+    "id": 6,
+    "name": "Black Mary Jane Shoes",
+    "brand": "Geox",
+    "price": 11200,
+    "gender": "women",
+    "category": "shoes",
+    "image": "/photos/Black Mary Jane Shoes.jpg",
+    "description": "Black Mary Jane shoes with strap."
+  },
+  {
+    "id": 7,
+    "name": "Black Sports Leggings",
+    "brand": "Calvin Klein",
+    "price": 4500,
+    "gender": "women",
+    "category": "underwear",
+    "image": "/photos/Black Sports Leggings.jpg",
+    "description": "Stretch sports leggings for training."
+  },
+  {
+    "id": 8,
+    "name": "Black Stiletto Heels",
+    "brand": "Armani Exchange",
+    "price": 18900,
+    "gender": "women",
+    "category": "shoes",
+    "image": "/photos/Black Stiletto Heels.jpg",
+    "description": "Elegant black stiletto heels."
+  },
+  {
+    "id": 9,
+    "name": "Blue Classic Boxers",
+    "brand": "Tommy Hilfiger",
+    "price": 2200,
+    "gender": "men",
+    "category": "underwear",
+    "image": "/photos/Blue Classic Boxers.jpg",
+    "description": "Classic blue boxers in soft cotton."
+  },
+  {
+    "id": 10,
+    "name": "Blue Kids Hoodie",
+    "brand": "Gant",
+    "price": 3900,
+    "gender": "kids",
+    "category": "clothes",
+    "image": "/photos/Blue Kids Hoodie.jpg",
+    "description": "Blue hoodie for kids."
+  },
+  {
+    "id": 11,
+    "name": "Blue Skinny Jeans",
+    "brand": "Calvin Klein",
+    "price": 7900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Blue Skinny Jeans.jpg",
+    "description": "Blue skinny jeans with stretch."
+  },
+  {
+    "id": 12,
+    "name": "Brown Leather Belt",
+    "brand": "Tommy Hilfiger",
+    "price": 3500,
+    "gender": "men",
+    "category": "accessories",
+    "image": "/photos/Brown Leather Belt.jpg",
+    "description": "Brown leather belt with metal buckle."
+  },
+  {
+    "id": 13,
+    "name": "Brown Leather Derby Shoes",
+    "brand": "Geox",
+    "price": 13900,
+    "gender": "men",
+    "category": "shoes",
+    "image": "/photos/Brown Leather Derby Shoes.jpg",
+    "description": "Brown leather derby shoes."
+  },
+  {
+    "id": 14,
+    "name": "Cream Knit Sweater",
+    "brand": "Gant",
+    "price": 8900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Cream Knit Sweater.jpg",
+    "description": "Cream knit sweater with round neck."
+  },
+  {
+    "id": 15,
+    "name": "Dusty Pink Lace Bralette",
+    "brand": "Calvin Klein",
+    "price": 2900,
+    "gender": "women",
+    "category": "underwear",
+    "image": "/photos/Dusty Pink Lace Bralette.jpg",
+    "description": "Dusty pink lace bralette."
+  },
+  {
+    "id": 16,
+    "name": "Grey Boxer Briefs",
+    "brand": "Tommy Hilfiger",
+    "price": 1900,
+    "gender": "men",
+    "category": "underwear",
+    "image": "/photos/Grey Boxer Briefs.jpg",
+    "description": "Grey boxer briefs in soft cotton."
+  },
+  {
+    "id": 17,
+    "name": "Grey Marl Zip-Up Hoodie",
+    "brand": "Gant",
+    "price": 6900,
+    "gender": "men",
+    "category": "clothes",
+    "image": "/photos/Grey Marl Zip-Up Hoodie.jpg",
+    "description": "Grey marl zip-up hoodie."
+  },
+  {
+    "id": 18,
+    "name": "Grey Oversized Cardigan",
+    "brand": "Armani Exchange",
+    "price": 12900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Grey Oversized Cardigan.jpg",
+    "description": "Oversized grey cardigan."
+  },
+  {
+    "id": 19,
+    "name": "Khaki Slim Fit Chinos",
+    "brand": "Tommy Hilfiger",
+    "price": 7900,
+    "gender": "men",
+    "category": "clothes",
+    "image": "/photos/Khaki Slim Fit Chinos.jpg",
+    "description": "Khaki slim-fit chinos."
+  },
+  {
+    "id": 20,
+    "name": "Light Blue Denim Dungarees",
+    "brand": "Calvin Klein",
+    "price": 9900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Light Blue Denim Dungarees.jpg",
+    "description": "Light blue denim dungarees."
+  },
+  {
+    "id": 21,
+    "name": "Light Blue Denim Shorts",
+    "brand": "Tommy Hilfiger",
+    "price": 5900,
+    "gender": "women",
+    "category": "clothes",
+    "image": "/photos/Light Blue Denim Shorts.jpg",
+    "description": "Light blue denim shorts."
+  },
+  {
+    "id": 22,
+    "name": "Light Blue Oxford Shirt",
+    "brand": "Gant",
+    "price": 6900,
+    "gender": "men",
+    "category": "clothes",
+    "image": "/photos/Light Blue Oxford Shirt.jpg",
+    "description": "Light blue oxford cotton shirt."
+  }
+]

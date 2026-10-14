@@ -1,13 +1,10 @@
-import Header from "./Header";
 import HeroBanner from "./HeroBanner";
 import GenderSection from "./GenderSection";
 import NewArrivalsCarousel from "./NewArrivalsCarousel";
 import AboutSection from "./AboutSection";
 import SubscribeModule from "./SubscribeModule";
-import Footer from "./Footer";
 
 export default function HomePage() {
-  const organization = "DEEPMAG";
   const pageTitle = "New Arrivals";
 
   const products = [
@@ -19,15 +16,11 @@ export default function HomePage() {
 
   return (
     <>
-      <Header organization={organization} />
-      <main>
-        <HeroBanner />
-        <GenderSection />
-        <NewArrivalsCarousel title={pageTitle} items={products} />
-        <AboutSection />
-        <SubscribeModule />
-      </main>
-      <Footer organization={organization} />
+      <HeroBanner />
+      <GenderSection />
+      <NewArrivalsCarousel title={pageTitle} items={products} />
+      <AboutSection />
+      <SubscribeModule />
     </>
   );
 }

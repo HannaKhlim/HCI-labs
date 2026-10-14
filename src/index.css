@@ -891,10 +891,12 @@ a {
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
+
 .product-tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
+
 .product-tile__img {
   width: 100%;
   height: 100%;
@@ -902,37 +904,50 @@ a {
   display: block;
   transition: transform 0.4s ease;
 }
+
 .product-tile:hover .product-tile__img {
   transform: scale(1.05);
 }
-
 .product-tile__wishlist {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 2;
-  width: 32px;
-  height: 32px;
+  z-index: 100;
+  width: 36px;
+  height: 36px;
   border: none;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 50%;
   cursor: pointer;
-  font-size: 1.25rem;
-  line-height: 1;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition:
     background 0.2s,
     transform 0.2s;
 }
+
 .product-tile__wishlist:hover {
   background: #fff;
   transform: scale(1.1);
 }
+
 .product-tile__wishlist.wishlist-icon--added {
   background: var(--error);
-  color: #fff;
+}
+
+.product-tile__wishlist.wishlist-icon--added .product-tile__wishlist-icon {
+  filter: brightness(0) invert(1);
+}
+
+.product-tile__wishlist-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  pointer-events: none;
+  transition: filter 0.2s ease;
 }
 
 .product-tile__overlay {
@@ -948,27 +963,33 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   gap: 8px;
+  z-index: 1;
 }
+
 .product-tile__main {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .product-tile__name {
   color: var(--card-overlay-text);
   font-size: 1rem;
   font-weight: 600;
 }
+
 .product-tile__brand {
   color: var(--card-overlay-muted);
   font-size: 0.8125rem;
   font-weight: 400;
 }
+
 .product-tile__price {
   color: var(--card-overlay-text);
   font-size: 1rem;
   font-weight: 700;
 }
+
 .product-tile__extra {
   overflow: hidden;
   max-height: 0;
@@ -980,15 +1001,18 @@ a {
     max-height 0.35s ease,
     opacity 0.3s ease;
 }
+
 .product-tile:hover .product-tile__extra {
   max-height: 200px;
   opacity: 1;
 }
+
 .product-tile__description {
   color: var(--card-overlay-subtle);
   font-size: 0.8125rem;
   line-height: 140%;
 }
+
 .product-tile__btn {
   width: 100%;
   font-size: 0.875rem;
@@ -1155,6 +1179,11 @@ a {
 [data-tooltip] {
   position: relative;
 }
+
+[data-tooltip].product-tile__wishlist {
+  position: absolute;
+}
+
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -1174,11 +1203,11 @@ a {
     transform 0.2s ease;
   z-index: 10;
 }
+
 [data-tooltip]:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-
 @media (max-width: 1440px) {
   main {
     padding: 28px 60px 40px;

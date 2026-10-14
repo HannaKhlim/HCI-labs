@@ -33,9 +33,14 @@ export default function ProductTile({ product, onOpen }) {
       <button
         className={`product-tile__wishlist ${inWishlist ? "wishlist-icon--added" : ""}`}
         onClick={handleToggleWishlist}
-        aria-label="Add to wishlist"
+        data-tooltip={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+        aria-label="Wishlist"
       >
-        ♡
+        <img
+          src="/icons/wishlist.svg"
+          alt="Wishlist"
+          className="product-tile__wishlist-icon"
+        />
       </button>
 
       <div className="product-tile__overlay">
@@ -49,6 +54,7 @@ export default function ProductTile({ product, onOpen }) {
           <button
             className="btn-primary product-tile__btn"
             onClick={handleAddToCart}
+            data-tooltip={inCart ? "Already in cart" : "Add to cart"}
           >
             {inCart ? "In cart ✓" : "Add to cart"}
           </button>
