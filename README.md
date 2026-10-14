@@ -1,16 +1,33 @@
-# React + Vite
+# DEEPMAG — HCI Labs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA e-commerce application for a clothing store. Laboratory work #2 for the "Human-Computer Interaction" course.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 (functional components, hooks)
+- React Router v6
+- Vite
+- CSS (no frameworks)
 
-## React Compiler
+## Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `/` — home: hero banner, gender categories, new arrivals carousel, about section, subscribe form
+- `/products` — catalog with filters (gender, category, search, sorting)
+- `/profile` — cart and wishlist with multi-select
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- View product details in a modal window
+- Add and remove items from the cart
+- Change item quantity
+- Add to wishlist
+- Multi-select with visual highlighting and bulk delete
+- Responsive layout (1920px → 320px)
+- Animations, hover effects, tooltips
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
