@@ -38,12 +38,19 @@ export default function Header({ organization }) {
       </div>
 
       <div className="header-bottom-mobile">
-        <div className="header-bottom__item header-bottom-mobile__menu">
+        <div
+          className="header-bottom__item header-bottom-mobile__menu"
+          data-tooltip="Menu"
+        >
           <img src="/icons/menu.svg" alt="menu" className="header-bottom-mobile__icon" />
         </div>
         <div className="header-bottom__item logo-wrapper">
           <Link to="/">
-            <img src="/logos/logo.png" alt={organization} className="header-bottom__logo" />
+            <img
+              src="/logos/logo.png"
+              alt={organization}
+              className="header-bottom__logo"
+            />
           </Link>
         </div>
         <div className="header-bottom__item header-search__wrapper">
@@ -54,37 +61,87 @@ export default function Header({ organization }) {
       <div className="header-bottom">
         <div className="header-bottom__item">
           <Link to="/">
-            <img src="/logos/logo.png" alt={organization} className="header-bottom__logo" />
+            <img
+              src="/logos/logo.png"
+              alt={organization}
+              className="header-bottom__logo"
+            />
           </Link>
         </div>
         <div className="header-bottom__item header-search__wrapper">
           <input type="text" className="header-search" placeholder="Search" />
         </div>
         <div className="header-bottom__item header-profile">
-          <Link to="/profile" className="header-profile__item">
+          <Link
+            to="/profile"
+            className="header-profile__item"
+            data-tooltip="Profile"
+            aria-label="Profile"
+          >
             <img src="/icons/login.svg" alt="Login" className="header-profile__icon" />
           </Link>
-          <Link to="/profile" className="header-profile__item">
-            <span className="header-profile__badge">♡ {wishlist.length}</span>
+
+          <Link
+            to="/profile"
+            className="header-profile__item"
+            data-tooltip="Wishlist"
+            aria-label="Wishlist"
+          >
+            <img
+              src="/icons/wishlist.svg"
+              alt="Wishlist"
+              className="header-profile__icon"
+            />
+            {wishlist.length > 0 && (
+              <span className="header-profile__badge">{wishlist.length}</span>
+            )}
           </Link>
-          <Link to="/profile" className="header-profile__item">
+
+          <Link
+            to="/profile"
+            className="header-profile__item"
+            data-tooltip="Cart"
+            aria-label="Cart"
+          >
             <img src="/icons/cart.svg" alt="Cart" className="header-profile__icon" />
-            {cartCount > 0 && <span className="header-profile__badge">{cartCount}</span>}
+            {cartCount > 0 && (
+              <span className="header-profile__badge">{cartCount}</span>
+            )}
           </Link>
         </div>
       </div>
 
       <nav className="header-navigation">
         <div className="header-navigation__item">
-          <Link to="/products?gender=women" className="header-navigation__option-label">WOMEN</Link>
-          <Link to="/products?gender=men" className="header-navigation__option-label">MEN</Link>
-          <Link to="/products?gender=kids" className="header-navigation__option-label">KIDS</Link>
+          <Link to="/products?gender=women" className="header-navigation__option-label">
+            WOMEN
+          </Link>
+          <Link to="/products?gender=men" className="header-navigation__option-label">
+            MEN
+          </Link>
+          <Link to="/products?gender=kids" className="header-navigation__option-label">
+            KIDS
+          </Link>
         </div>
         <div className="header-navigation__item header-navigation__categories">
-          <Link to="/products?category=clothes" className="header-navigation__option-label">Clothing</Link>
-          <Link to="/products?category=shoes" className="header-navigation__option-label">Shoes</Link>
-          <Link to="/products?category=accessories" className="header-navigation__option-label">Bags &amp; Accessories</Link>
-          <Link to="/products?category=underwear" className="header-navigation__option-label">Underwear</Link>
+          <Link to="/products?category=clothes" className="header-navigation__option-label">
+            Clothing
+          </Link>
+          <Link to="/products?category=shoes" className="header-navigation__option-label">
+            Shoes
+          </Link>
+          <Link
+            to="/products?category=accessories"
+            className="header-navigation__option-label"
+          >
+            Bags &amp; Accessories
+          </Link>
+          <Link
+            to="/products?category=underwear"
+            className="header-navigation__option-label"
+          >
+            Underwear
+          </Link>
         </div>
         <div className="header-navigation__item header-navigation__item--empty" />
       </nav>
