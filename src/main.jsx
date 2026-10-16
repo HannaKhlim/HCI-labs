@@ -13,6 +13,9 @@ import Layout from "./Layout";
 import HomePage from "./HomePage";
 import ProductsPage from "./ProductsPage";
 import ProfilePage from "./ProfilePage";
+import CartPage from "./CartPage";
+import WishlistPage from "./WishlistPage";
+import ProductFormPage from "./ProductFormPage";
 import NotFoundPage from "./NotFoundPage";
 
 const theme = createTheme({
@@ -37,6 +40,10 @@ createRoot(document.getElementById("root")).render(
               <Route index element={<HomePage />} />
               <Route path="products" element={<ProductsPage />} />
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="cart" element={<CartPage />} />
+              <Route path="wishlist" element={<WishlistPage />} />
+              <Route path="admin/product/new" element={<ProductFormPage />} />
+              <Route path="admin/product/edit/:id" element={<ProductFormPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
