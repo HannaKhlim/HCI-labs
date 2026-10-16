@@ -1,23 +1,29 @@
+import { Box, Typography } from "@mui/material";
 import ProductTile from "./ProductTile";
 
-export default function NewArrivalsCarousel({ title, items }) {
+export default function NewArrivalsCarousel({ title, items, onOpenProduct }) {
   return (
-    <section className="product-carousel">
-      <div className="product-carousel__header">
-        <h2 className="product-carousel__title">{title}</h2>
-      </div>
-      <div className="product-carousel__wrapper">
-        <div className="product-carousel__track">
-          {items.map((item) => (
-            <ProductTile
-              key={item.id}
-              name={item.name}
-              brand={item.brand}
-              price={item.price}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+    <Box component="section" sx={{ my: 4 }}>
+      <Typography variant="h4" sx={{ fontWeight: 700, mb: 3 }}>
+        {title}
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          overflowX: "auto",
+          pb: 2,
+          scrollbarWidth: "thin",
+          "&::-webkit-scrollbar": { height: 8 },
+          "&::-webkit-scrollbar-thumb": { backgroundColor: "#ccc", borderRadius: 4 },
+        }}
+      >
+        {items.map((item) => (
+          <Box key={item.id} sx={{ flex: "0 0 260px", width: 260 }}>
+            <ProductTile product={item} onOpen={onOpenProduct} />
+          </Box>
+        ))}
+      </Box>
+    </Box>
   );
 }

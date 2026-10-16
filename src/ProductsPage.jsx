@@ -1,23 +1,49 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  TextField,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Select,
+  MenuItem,
+  Paper,
+  InputLabel,
+} from "@mui/material";
 import ProductTile from "./ProductTile";
-import productsData from "./data/products.json";
+import ProductModal from "./ProductModal";
+import { useApp } from "./context/AppContext";
 
-const GENDERS = ["all", "women", "men", "kids"];
-const CATEGORIES = ["all", "clothes", "shoes", "accessories", "underwear"];
+const GENDERS = [
+  { value: "all", label: "All Genders" },
+  { value: "women", label: "Women" },
+  { value: "men", label: "Men" },
+  { value: "kids", label: "Kids" },
+];
+
+const CATEGORIES = [
+  { value: "all", label: "All Categories" },
+  { value: "clothes", label: "Clothing" },
+  { value: "shoes", label: "Shoes" },
+  { value: "accessories", label: "Accessories" },
+  { value: "underwear", label: "Underwear" },
+];
 
 export default function ProductsPage() {
+  const { products } = useApp();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const gender = searchParams.get("gender") || "all";
   const category = searchParams.get("category") || "all";
-
-  // локальный state для поиска и сортировки
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") || "");
   const [sort, setSort] = useState("default");
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // фильтрация
-  let filtered = productsData.filter((p) => {
+  let filtered = products.filter((p) => {
     const matchGender = gender === "all" || p.gender === gender;
     const matchCategory = category === "all" || p.category === category;
     const matchSearch =
@@ -27,7 +53,6 @@ export default function ProductsPage() {
     return matchGender && matchCategory && matchSearch;
   });
 
-  // сортировка
   if (sort === "price-asc") filtered = [...filtered].sort((a, b) => a.price - b.price);
   if (sort === "price-desc") filtered = [...filtered].sort((a, b) => b.price - a.price);
   if (sort === "name") filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
@@ -40,82 +65,86 @@ export default function ProductsPage() {
   };
 
   return (
-    <section className="products-layout">
-      <aside className="products-filters">
-        <div className="filter-group open">
-          <div className="filter-group__trigger">
-            <span className="filter-group__label">Gender</span>
-          </div>
-          <div className="filter-group__panel">
+    <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 4, width: "100%", alignItems: "flex-start" }}>
+      <Paper sx={{ width: { xs: "100%", md: 260 }, p: 3, flexShrink: 0, borderRadius: 2 }} elevation={2}>
+        <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
+          Filters
+        </Typography>
+
+        <FormControl component="fieldset" sx={{ mb: 3 }}>
+          <FormLabel component="legend" sx={{ fontWeight: 600 }}>Gender</FormLabel>
+          <RadioGroup value={gender} onChange={(e) => updateParam("gender", e.target.value)}>
             {GENDERS.map((g) => (
-              <label key={g} className="filter-group__option">
-                <input
-                  type="radio"
-                  name="gender"
-                  checked={gender === g}
-                  onChange={() => updateParam("gender", g)}
-                />
-                <span>{g.toUpperCase()}</span>
-              </label>
+              <FormControlLabel key={g.value} value={g.value} control={<Radio size="small" />} label={g.label} />
             ))}
-          </div>
-        </div>
+          </RadioGroup>
+        </FormControl>
 
-        <div className="filter-group open">
-          <div className="filter-group__trigger">
-            <span className="filter-group__label">Category</span>
-          </div>
-          <div className="filter-group__panel">
+        <FormControl component="fieldset">
+          <FormLabel component="legend" sx={{ fontWeight: 600 }}>Category</FormLabel>
+          <RadioGroup value={category} onChange={(e) => updateParam("category", e.target.value)}>
             {CATEGORIES.map((c) => (
-              <label key={c} className="filter-group__option">
-                <input
-                  type="radio"
-                  name="category"
-                  checked={category === c}
-                  onChange={() => updateParam("category", c)}
-                />
-                <span>{c.toUpperCase()}</span>
-              </label>
+              <FormControlLabel key={c.value} value={c.value} control={<Radio size="small" />} label={c.label} />
             ))}
-          </div>
-        </div>
-      </aside>
+          </RadioGroup>
+        </FormControl>
+      </Paper>
 
-      <div className="products-main">
-        <div className="products-toolbar">
-          <input
-            type="text"
-            className="input"
-            placeholder="Search by name or brand..."
+      <Box sx={{ flex: 1, minWidth: 0, width: "100%" }}>
+        <Box sx={{ display: "flex", gap: 2, mb: 3, flexWrap: "wrap" }}>
+          <TextField
+            placeholder="Search by product name or brand..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            size="small"
+            sx={{ flex: 1, minWidth: 240 }}
           />
-          <select
-            className="input"
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-          >
-            <option value="default">Default</option>
-            <option value="price-asc">Price: low → high</option>
-            <option value="price-desc">Price: high → low</option>
-            <option value="name">Name A→Z</option>
-          </select>
-        </div>
+
+          <FormControl size="small" sx={{ minWidth: 200 }}>
+            <InputLabel>Sort By</InputLabel>
+            <Select value={sort} label="Sort By" onChange={(e) => setSort(e.target.value)}>
+              <MenuItem value="default">Default</MenuItem>
+              <MenuItem value="price-asc">Price: Low to High</MenuItem>
+              <MenuItem value="price-desc">Price: High to Low</MenuItem>
+              <MenuItem value="name">Name (A-Z)</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Products found: {filtered.length}
+        </Typography>
 
         {filtered.length === 0 ? (
-          <p className="products-empty">No products match your filters.</p>
+          <Paper sx={{ p: 4, textAlign: "center", borderRadius: 2 }}>
+            <Typography variant="h6">No products match your criteria</Typography>
+          </Paper>
         ) : (
-          <div className="products-grid">
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(1, 1fr)",
+                sm: "repeat(2, 1fr)",
+                md: "repeat(3, 1fr)",
+                lg: "repeat(4, 1fr)",
+              },
+              gap: 3,
+              width: "100%",
+            }}
+          >
             {filtered.map((product) => (
               <ProductTile
                 key={product.id}
                 product={product}
-                onOpen={(p) => console.log("Open modal for:", p)}
+                onOpen={(p) => setSelectedProduct(p)}
               />
             ))}
-          </div>
+          </Box>
         )}
-      </div>
-    </section>
+      </Box>
+
+      <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
+    </Box>
   );
 }
