@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -7,11 +8,15 @@ import {
   Badge,
   Box,
   IconButton,
+  Menu,
+  MenuItem,
+  Tooltip,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import PersonIcon from "@mui/icons-material/Person";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -23,6 +28,11 @@ import { useApp } from "./context/AppContext";
 
 export default function Header({ organization }) {
   const { cartCount, wishlist } = useApp();
+  const navigate = useNavigate();
+  const [profileAnchor, setProfileAnchor] = useState(null);
+
+  const handleOpenProfileMenu = (e) => setProfileAnchor(e.currentTarget);
+  const handleCloseProfileMenu = () => setProfileAnchor(null);
 
   return (
     <Box component="header" sx={{ mb: 2 }}>
@@ -90,21 +100,9 @@ export default function Header({ organization }) {
         </Box>
       </Box>
 
-      <AppBar position="static" color="inherit" elevation={0}>
-        <Toolbar
-          sx={{
-            bgcolor: "#f0f0f0",
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 2,
-            py: 1,
-          }}
-        >
-          <Box
-            component={Link}
-            to="/"
-            sx={{ display: "flex", alignItems: "center" }}
-          >
+      <AppBar position="static" color="inherit" elevation={1}>
+        <Toolbar sx={{ bgcolor: "#f5f5f5", justifyContent: "space-between", gap: 2, py: 1 }}>
+          <Box component={Link} to="/" sx={{ display: "flex", alignItems: "center" }}>
             <Box
               component="img"
               src="/logos/logo.png"
@@ -117,100 +115,130 @@ export default function Header({ organization }) {
             sx={{
               display: "flex",
               alignItems: "center",
-              bgcolor: "#d3d3d3",
-              borderRadius: 1,
-              px: 1,
+              bgcolor: "#fff",
+              borderRadius: 2,
+              px: 2,
+              py: 0.5,
               flexGrow: 1,
-              maxWidth: 600,
+              maxWidth: 550,
+              boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
             }}
           >
-            <SearchIcon fontSize="small" />
+            <SearchIcon fontSize="small" sx={{ color: "gray", mr: 1 }} />
             <InputBase
-              placeholder="Search"
-              sx={{ ml: 1, flex: 1, fontSize: "0.875rem" }}
+              placeholder="Search catalog..."
+              sx={{ flex: 1, fontSize: "0.875rem" }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") navigate(`/products?search=${e.target.value}`);
+              }}
             />
           </Box>
 
           <Box sx={{ display: "flex", gap: 1 }}>
-            <IconButton component={Link} to="/profile" aria-label="Profile">
-              <PersonIcon />
-            </IconButton>
+            <Tooltip title="Add New Product">
+              <IconButton component={Link} to="/admin/product/new" color="primary">
+                <AddBoxOutlinedIcon />
+              </IconButton>
+            </Tooltip>
 
-            <IconButton component={Link} to="/profile" aria-label="Wishlist">
-              <Badge badgeContent={wishlist.length} color="error">
-                <FavoriteBorderIcon />
-              </Badge>
-            </IconButton>
+            <Tooltip title="User Profile">
+              <IconButton onClick={handleOpenProfileMenu} color="inherit">
+                <PersonIcon />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              anchorEl={profileAnchor}
+              open={Boolean(profileAnchor)}
+              onClose={handleCloseProfileMenu}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleCloseProfileMenu();
+                  navigate("/profile");
+                }}
+              >
+                Profile Dashboard
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProfileMenu();
+                  navigate("/cart");
+                }}
+              >
+                Shopping Cart
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProfileMenu();
+                  navigate("/wishlist");
+                }}
+              >
+                Wishlist
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  handleCloseProfileMenu();
+                  navigate("/admin/product/new");
+                }}
+              >
+                Product Management (CRUD)
+              </MenuItem>
+            </Menu>
 
-            <IconButton component={Link} to="/profile" aria-label="Cart">
-              <Badge badgeContent={cartCount} color="error">
-                <ShoppingCartOutlinedIcon />
-              </Badge>
-            </IconButton>
+            <Tooltip title="Wishlist">
+              <IconButton component={Link} to="/wishlist" color="inherit">
+                <Badge badgeContent={wishlist.length} color="error">
+                  <FavoriteBorderIcon />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Shopping Cart">
+              <IconButton component={Link} to="/cart" color="inherit">
+                <Badge badgeContent={cartCount} color="error">
+                  <ShoppingCartOutlinedIcon />
+                </Badge>
+              </IconButton>
+            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>
 
       <Box
         sx={{
-          bgcolor: "#f0f0f0",
+          bgcolor: "#fff",
+          borderBottom: "1px solid #e0e0e0",
           display: "flex",
           justifyContent: "space-between",
           px: 3,
-          py: 2,
+          py: 1.5,
+          flexWrap: "wrap",
+          gap: 2,
         }}
       >
         <Box sx={{ display: "flex", gap: 3 }}>
-          <Typography
-            component={Link}
-            to="/products?gender=women"
-            sx={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-          >
+          <Typography component={Link} to="/products?gender=women" sx={{ fontWeight: 600 }}>
             WOMEN
           </Typography>
-          <Typography
-            component={Link}
-            to="/products?gender=men"
-            sx={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-          >
+          <Typography component={Link} to="/products?gender=men" sx={{ fontWeight: 600 }}>
             MEN
           </Typography>
-          <Typography
-            component={Link}
-            to="/products?gender=kids"
-            sx={{ textDecoration: "none", color: "inherit", fontWeight: 500 }}
-          >
+          <Typography component={Link} to="/products?gender=kids" sx={{ fontWeight: 600 }}>
             KIDS
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", gap: 3 }}>
-          <Typography
-            component={Link}
-            to="/products?category=clothes"
-            sx={{ textDecoration: "none", color: "inherit" }}
-          >
+          <Typography component={Link} to="/products?category=clothes" sx={{ color: "text.secondary" }}>
             Clothing
           </Typography>
-          <Typography
-            component={Link}
-            to="/products?category=shoes"
-            sx={{ textDecoration: "none", color: "inherit" }}
-          >
+          <Typography component={Link} to="/products?category=shoes" sx={{ color: "text.secondary" }}>
             Shoes
           </Typography>
-          <Typography
-            component={Link}
-            to="/products?category=accessories"
-            sx={{ textDecoration: "none", color: "inherit" }}
-          >
-            Bags &amp; Accessories
+          <Typography component={Link} to="/products?category=accessories" sx={{ color: "text.secondary" }}>
+            Accessories
           </Typography>
-          <Typography
-            component={Link}
-            to="/products?category=underwear"
-            sx={{ textDecoration: "none", color: "inherit" }}
-          >
+          <Typography component={Link} to="/products?category=underwear" sx={{ color: "text.secondary" }}>
             Underwear
           </Typography>
         </Box>
