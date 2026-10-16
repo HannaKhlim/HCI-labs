@@ -14,12 +14,12 @@ export const translations = {
     header: "About Us",
     textHeader: "DEEPMAG",
     textParagraph:
-      "— A chain of stores of world brands ARMANI EXCHANGE, GANT, CALVIN KLEIN, TOMMY HILFIGER, GEOX. For more than 10 years we have been official representatives of world-famous brands in Tyumen, setting bright trends and fashion trends.",
+      "— Official retailer of global designer brands including ARMANI EXCHANGE, GANT, CALVIN KLEIN, TOMMY HILFIGER, and GEOX. Delivering premium collections, modern trends, and authentic style.",
   },
   subscribeModule: {
     header:
-      "Subscribe to newsletter and get <strong>10%</strong> off your order",
-    emailPlaceholder: "Email",
+      "Subscribe to our newsletter and get <strong>10%</strong> off your order",
+    emailPlaceholder: "Email address",
     cta: "SUBSCRIBE",
   },
 };
