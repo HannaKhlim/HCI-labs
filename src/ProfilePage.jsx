@@ -1,152 +1,83 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Container, Paper, Typography, Box, Button, Grid, Divider } from "@mui/material";
+import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useApp } from "./context/AppContext";
 
 export default function ProfilePage() {
-  const {
-    cart,
-    wishlist,
-    removeFromCart,
-    changeQty,
-    clearCart,
-    toggleWishlist,
-    cartTotal,
-  } = useApp();
-
-  // === Множественный выбор ===
-  const [selectedIds, setSelectedIds] = useState([]);
-
-  const toggleSelect = (id) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
-
-  const removeSelected = () => {
-    selectedIds.forEach((id) => removeFromCart(id));
-    setSelectedIds([]);
-  };
-
-  const selectAll = () => {
-    if (selectedIds.length === cart.length) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(cart.map((item) => item.id));
-    }
-  };
+  const { cartCount, cartTotal, wishlist } = useApp();
 
   return (
-    <section className="profile-page">
-      {/* ИЗБРАННОЕ */}
-      <div className="profile-page__wishlist">
-        <h2>Wishlist ({wishlist.length})</h2>
+    <Container maxWidth="md" sx={{ py: 3, display: "flex", flexDirection: "column", gap: 4 }}>
+      <Typography variant="h4" sx={{ fontWeight: 800 }}>
+        User Dashboard
+      </Typography>
 
-        {wishlist.length === 0 ? (
-          <p className="profile-empty">Your wishlist is empty.</p>
-        ) : (
-          <ul className="profile-list">
-            {wishlist.map((item) => (
-              <li key={item.id} className="profile-list__item">
-                <span className="profile-list__name">{item.name}</span>
-                <span className="profile-list__brand">{item.brand}</span>
-                <span className="profile-list__price">{item.price} ₽</span>
-                <button
-                  className="btn-secondary"
-                  onClick={() => toggleWishlist(item)}
-                >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={2} sx={{ p: 3, borderRadius: 2, display: "flex", flexDirection: "column", gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <ShoppingBagOutlinedIcon color="primary" />
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                Shopping Cart
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              Total items: {cartCount}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Total sum: ${cartTotal.toLocaleString()}
+            </Typography>
+            <Button component={Link} to="/cart" variant="contained" sx={{ mt: 1 }}>
+              Open Cart
+            </Button>
+          </Paper>
+        </Grid>
 
-      {/* КОРЗИНА */}
-      <div className="profile-page__cart">
-        <h2>Cart ({cart.length})</h2>
+        <Grid item xs={12} sm={6}>
+          <Paper elevation={2} sx={{ p: 3, borderRadius: 2, display: "flex", flexDirection: "column", gap: 1.5 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <FavoriteBorderIcon color="error" />
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                Wishlist
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              Saved items: {wishlist.length}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Favorites ready to buy
+            </Typography>
+            <Button component={Link} to="/wishlist" variant="outlined" sx={{ mt: 1 }}>
+              Open Wishlist
+            </Button>
+          </Paper>
+        </Grid>
+      </Grid>
 
-        {cart.length === 0 ? (
-          <p className="profile-empty">Your cart is empty.</p>
-        ) : (
-          <>
-            <div className="profile-cart__toolbar">
-              <label className="profile-cart__select-all">
-                <input
-                  type="checkbox"
-                  checked={selectedIds.length === cart.length && cart.length > 0}
-                  onChange={selectAll}
-                />
-                <span>Select all</span>
-              </label>
+      <Paper elevation={1} sx={{ p: 3, borderRadius: 2 }}>
+        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
+          Product Management
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          Create, update, or remove objects in the store catalog.
+        </Typography>
+        <Button
+          component={Link}
+          to="/admin/product/new"
+          variant="contained"
+          startIcon={<AddBoxOutlinedIcon />}
+        >
+          Add New Product
+        </Button>
+      </Paper>
 
-              {selectedIds.length > 0 && (
-                <button className="btn-secondary" onClick={removeSelected}>
-                  Delete selected ({selectedIds.length})
-                </button>
-              )}
-            </div>
+      <Divider />
 
-            <ul className="profile-list">
-              {cart.map((item) => {
-                const isSelected = selectedIds.includes(item.id);
-                return (
-                  <li
-                    key={item.id}
-                    className={`profile-list__item ${
-                      isSelected ? "profile-list__item--selected" : ""
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() => toggleSelect(item.id)}
-                    />
-
-                    <span className="profile-list__name">{item.name}</span>
-                    <span className="profile-list__brand">{item.brand}</span>
-                    <span className="profile-list__price">{item.price} ₽</span>
-
-                    <div className="profile-list__qty">
-                      <button
-                        className="btn-outline"
-                        onClick={() => changeQty(item.id, -1)}
-                      >
-                        −
-                      </button>
-                      <span className="profile-list__qty-value">{item.qty}</span>
-                      <button
-                        className="btn-outline"
-                        onClick={() => changeQty(item.id, +1)}
-                      >
-                        +
-                      </button>
-                    </div>
-
-                    <button
-                      className="btn-secondary"
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      Remove
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className="profile-cart__total">
-              <strong>Total: {cartTotal} ₽</strong>
-              <button className="btn-primary" onClick={clearCart}>
-                Clear cart
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-
-      <Link to="/products" className="btn-primary">
-        Continue shopping
-      </Link>
-    </section>
+      <Button component={Link} to="/products" variant="text" sx={{ alignSelf: "flex-start" }}>
+        ← Continue Shopping
+      </Button>
+    </Container>
   );
 }
