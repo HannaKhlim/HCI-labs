@@ -77,7 +77,7 @@ export async function transformLargeFile(file = LARGE_FILE) {
       } catch (error) { callback(error); }
     }
   });
-  await pipeline(fs.createReadStream(file), transform, fs.createWriteStream(TRANSFORMED_FILE, { encoding: 'utf8' }));
+  await pipeline(fs.createReadStream(file, { encoding: 'utf8' }), transform, fs.createWriteStream(TRANSFORMED_FILE, { encoding: 'utf8' }));
   return TRANSFORMED_FILE;
 }
 
