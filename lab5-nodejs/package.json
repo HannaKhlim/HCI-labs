@@ -1,0 +1,15 @@
+{
+  "name": "lab5-nodejs-product-catalog",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Лабораторная работа №5: Node.js FS, CLI, Streams и Worker Threads",
+  "scripts": {
+    "start": "node app.js",
+    "event-loop": "node experiments/event-loop.js",
+    "generate-large": "node app.js generate-large 150000",
+    "benchmark": "node app.js benchmark",
+    "compute-main": "node app.js compute main 12000000",
+    "compute-worker": "node app.js compute worker 12000000"
+  }
+}
