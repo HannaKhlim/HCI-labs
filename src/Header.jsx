@@ -25,9 +25,11 @@ import AccessibilityIcon from "@mui/icons-material/Accessibility";
 import TranslateIcon from "@mui/icons-material/Translate";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import { useApp } from "./context/AppContext";
+import { useTranslation } from "react-i18next";
 
 export default function Header({ organization }) {
   const { cartCount, wishlist } = useApp();
+  const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   const [profileAnchor, setProfileAnchor] = useState(null);
 
@@ -88,7 +90,7 @@ export default function Header({ organization }) {
         <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, cursor: "pointer" }}>
           <TranslateIcon sx={{ fontSize: 16 }} />
           <Typography variant="caption" sx={{ color: "inherit" }}>
-            Change Language
+            {t("changeLanguage")}
           </Typography>
         </Box>
 
