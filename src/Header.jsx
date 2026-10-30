@@ -89,7 +89,7 @@ export default function Header({ organization }) {
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 0.5, cursor: "pointer" }}>
           <TranslateIcon sx={{ fontSize: 16 }} />
-          <Typography variant="caption" sx={{ color: "inherit" }}>
+          <Typography variant="caption" sx={{ color: "inherit", cursor: "pointer" }} onClick={() => i18n.changeLanguage(i18n.language === "en" ? "ru" : "en")}>
             {t("changeLanguage")}
           </Typography>
         </Box>
