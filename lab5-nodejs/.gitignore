@@ -1,6 +1,0 @@
-node_modules/
-data/backup/
-data/large-products.jsonl
-data/stream-output.txt
-data/transformed-products.jsonl
-*.tmp
