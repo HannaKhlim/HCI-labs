@@ -3,22 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "scripts": { "dev": "vite", "build": "vite build", "lint": "eslint .", "preview": "vite preview" },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fontsource/roboto": "^5.3.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
+    "@reduxjs/toolkit": "^2.8.2",
     "bootstrap": "^5.3.8",
+    "i18next": "^25.2.1",
     "react": "^19.2.8",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.8",
+    "react-i18next": "^15.5.3",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
